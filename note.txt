@@ -1,0 +1,5 @@
+character standing still
+character name Neko-Kun
+character took total 42 rectangle renders
+gonna make  next two frames of character that will be shown
+next time will try to reduce number of code lines required using fxn and not to write all that render inside while loop if possible
