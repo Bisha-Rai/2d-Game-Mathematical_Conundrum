@@ -16,7 +16,7 @@ int main(int argc,char* argv[])
         running=false;
     }
 
-    while(running)
+    while(running) //currently using for close window later on gameloop.
     {
         SDL_Event input;
         SDL_PollEvent(&input);
