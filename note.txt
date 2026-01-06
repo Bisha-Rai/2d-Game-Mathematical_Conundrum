@@ -1,8 +1,15 @@
 character standing still
-character name Neko-Kun
+character name Neko-chan (Neko-Kun is Neko-Chan now)
 character took total 42 rectangle renders
 gonna make  next two frames of character that will be shown
 next time will try to reduce number of code lines required using fxn and not to write all that render inside while loop if possible
         -making the character move complete
-        -now next change Neko-kuns pose/ animation 
+        -now next change Neko-Chans pose/ animation 
         -saving currently to use these later
+
+
+ added second frame/ pose of Neko-Chan when moving to create visual as if she is moving with animation.
+ changing the poses to be rendered with respect to the number of frames rendered thus frame
+ (basically added animation)
+ 
+  
