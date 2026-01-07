@@ -40,24 +40,21 @@ void userinput(int &x,int &y)
 
             case SDL_KEYDOWN:
              i++;
-             if(i>12)
-             {
-                i=0;
-             }
+            
                 switch(input.key.keysym.sym)
                 {
                     case SDLK_a:
-                    x=x-6;
+                    x=x-20;
                 
                     break;
                     case SDLK_s:
-                    y=y+6;
+                    y=y+20;
                     break;
                     case SDLK_d:
-                    x=x+6;
+                    x=x+20;
                     break;
                     case SDLK_w:
-                    y=y-6;
+                    y=y-20;
                     break;
                     default:
                     break;
@@ -113,7 +110,7 @@ int main(int argc,char* argv[])
         SDL_RenderClear(renderer);
         userinput(x,y);
        
-        if(i<=6)
+        if(i%2==0)
         {
         r1.render(x+500,y+200,22,10);
         r2.render(x+522,y+210,10,10);
@@ -158,7 +155,7 @@ int main(int argc,char* argv[])
         r41.render(x+542,y+270,10,30);
         r42.render(x+572,y+300,20,10);
         }
-        if(i>6&&i<=12)
+        if(i%2!=0)
         {
             r1.render(x+520,y+420,30,10);
             r2.render(510+x,y+390,10,30);
@@ -220,9 +217,9 @@ int main(int argc,char* argv[])
         }
         SDL_RenderPresent(renderer);    
         Uint32 frameduration=SDL_GetTicks()-framestart;
-        if(frameduration<16)
+        if(frameduration<64)
         {
-            SDL_Delay(16-frameduration);
+            SDL_Delay(64-frameduration);
         }
     }
      
