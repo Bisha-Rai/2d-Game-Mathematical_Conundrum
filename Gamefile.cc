@@ -40,12 +40,14 @@ void userinput(int &x,int &y)
 
             case SDL_KEYDOWN:
              i++;
-            
+            if(i>6)
+            {
+                i=0;
+            }
                 switch(input.key.keysym.sym)
                 {
                     case SDLK_a:
                     x=x-20;
-                
                     break;
                     case SDLK_s:
                     y=y+20;
@@ -81,7 +83,7 @@ class character
         rect.h=h;
           SDL_SetRenderDrawColor(renderer,255,255,255,255);
         SDL_RenderFillRect(renderer,&rect);
-       
+      
         
       
         }
@@ -101,16 +103,21 @@ int main(int argc,char* argv[])
     else{
         running=false;
     }
+    SDL_Rect rect2;
+    rect2.x=-100;
+    rect2.y=430;
+    rect2.w=2000;
+    rect2.h=10;
 
 
-    while(running) //currently using for close window later on gameloop.
+    while(running) 
     {
         Uint32 framestart=SDL_GetTicks();
         SDL_SetRenderDrawColor(renderer,0,0,0,255);
         SDL_RenderClear(renderer);
         userinput(x,y);
        
-        if(i%2==0)
+        if(i<=3)
         {
         r1.render(x+500,y+200,22,10);
         r2.render(x+522,y+210,10,10);
@@ -155,7 +162,7 @@ int main(int argc,char* argv[])
         r41.render(x+542,y+270,10,30);
         r42.render(x+572,y+300,20,10);
         }
-        if(i%2!=0)
+        if(i>3&&i<=6)
         {
             r1.render(x+520,y+420,30,10);
             r2.render(510+x,y+390,10,30);
@@ -215,12 +222,17 @@ int main(int argc,char* argv[])
             r56.render(x+593,y+205,12,30);
             r57.render(x+623,y+240,20,12);
         }
+        
+           SDL_SetRenderDrawColor(renderer,255,255,255,255);
+        SDL_RenderFillRect(renderer,&rect2);
         SDL_RenderPresent(renderer);    
+         
         Uint32 frameduration=SDL_GetTicks()-framestart;
-        if(frameduration<64)
+        if(frameduration<16)
         {
-            SDL_Delay(64-frameduration);
+            SDL_Delay(16-frameduration);
         }
+      
     }
      
     SDL_DestroyWindow(window);
