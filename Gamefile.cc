@@ -7,6 +7,49 @@ SDL_Renderer* renderer= NULL;
 SDL_Event input;
 using namespace std;
 int i=0;
+int j=0;
+int change=0;
+void platform()
+{int y=430,x=0,w=60,h=10;
+    
+     
+    int i;
+    for(i=0;i<35;i++)
+    {
+    SDL_Rect ground;
+    ground.x=x+change;
+    ground.y=y;
+    ground.w=w;
+    ground.h=h;
+    SDL_Rect ground2;
+    ground2.x=x+20+change;
+    ground2.y=y+10;
+    ground2.w=w-40;
+    ground2.h=h;
+    SDL_Rect ground3;
+    ground3.x=x+change;
+    ground3.y=y+20;
+    ground3.w=w-40;
+    ground3.h=h;
+    SDL_Rect ground4;
+    ground4.x=x+40+change;
+    ground4.y=y+20;
+    ground4.w=w-40;
+    ground4.h=h;
+    SDL_Rect ground5;
+    ground5.x=x+20+change;
+    ground5.y=y+30;
+    ground5.w=w-40;
+    ground5.h=h;
+    SDL_SetRenderDrawColor(renderer,255,255,255,255);
+    SDL_RenderFillRect(renderer,&ground);
+        SDL_RenderFillRect(renderer,&ground2);
+            SDL_RenderFillRect(renderer,&ground3);
+                SDL_RenderFillRect(renderer,&ground4);
+                    SDL_RenderFillRect(renderer,&ground5);
+x=x+60;//to add the ground block every 60 pixels from the previous start point dont forget
+    }
+}
 void userinput(int &x,int &y)
 {
     
@@ -40,6 +83,11 @@ void userinput(int &x,int &y)
 
             case SDL_KEYDOWN:
              i++;
+             j++;
+             if(j>6)
+             {
+                j=0;
+             }
             if(i>6)
             {
                 i=0;
@@ -47,13 +95,32 @@ void userinput(int &x,int &y)
                 switch(input.key.keysym.sym)
                 {
                     case SDLK_a:
-                    x=x-20;
+                    x=x;
+                    if(j<3)
+                        {
+                            change=0;
+                        }
+                     else 
+                     {
+                        change=-30;
+                     }
+                        
                     break;
                     case SDLK_s:
                     y=y+20;
                     break;
                     case SDLK_d:
-                    x=x+20;
+                    x=x;
+                      if(j<3)
+                        {
+                            change=0;
+                        }
+                  
+                        else
+                        {
+                            change=-30;
+                            
+                        }
                     break;
                     case SDLK_w:
                     y=y-20;
@@ -222,15 +289,15 @@ int main(int argc,char* argv[])
             r56.render(x+593,y+205,12,30);
             r57.render(x+623,y+240,20,12);
         }
-        
+        platform();
            SDL_SetRenderDrawColor(renderer,255,255,255,255);
         SDL_RenderFillRect(renderer,&rect2);
         SDL_RenderPresent(renderer);    
          
         Uint32 frameduration=SDL_GetTicks()-framestart;
-        if(frameduration<16)
+        if(frameduration<32)
         {
-            SDL_Delay(16-frameduration);
+            SDL_Delay(32-frameduration);
         }
       
     }
