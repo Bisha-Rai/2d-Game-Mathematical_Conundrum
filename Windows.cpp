@@ -9,12 +9,13 @@ SDL_Window*window=NULL;
     SDL_Renderer*renderer=NULL;
 void platform()
 {int y=200,x=0,w=60,h=10;
+    
      
     int i;
     for(i=0;i<15;i++)
     {
     SDL_Rect ground;
-    ground.x=x;+change;
+    ground.x=x+change;
     ground.y=y;
     ground.w=w;
     ground.h=h;
@@ -44,11 +45,12 @@ void platform()
             SDL_RenderFillRect(renderer,&ground3);
                 SDL_RenderFillRect(renderer,&ground4);
                     SDL_RenderFillRect(renderer,&ground5);
-x=x+60;
+x=x+60;//to add the ground block every 60 pixels from the previous start point dont forget
     }
 }
 int main(int argc,char* argv[])
 {   int c,i;
+    int re=0;
     cout<<"enter 1 for rectangle 2 for line"<<endl;
     cin>>c;
 
@@ -64,7 +66,7 @@ int main(int argc,char* argv[])
     }
     while(isRunning)
     {
-        
+        Uint32 start=SDL_GetTicks();
        
             SDL_Event event;
             SDL_PollEvent(&event);
@@ -78,13 +80,17 @@ int main(int argc,char* argv[])
                     switch(event.key.keysym.sym)
                     {
                         case SDLK_a:
-                        if(j%2==0)
+                        if(j<40)
                         {
                             change=0;
                         }
+                        else if(j>40&&j<80)
+                        {
+                            change=-20;
+                        }
                         else
                         {
-                            change=-30;
+                            change=-40;
                         }
                         case SDLK_d:
                          if(j%2==0)
@@ -108,11 +114,10 @@ int main(int argc,char* argv[])
         {
         SDL_SetRenderDrawColor(renderer,255,255,255,255);
         SDL_Rect rect;
-        rect.x=100;
+        rect.x=100+re;
         rect.y=100;
         rect.w=50;
         rect.h=25;
-
         SDL_RenderFillRect(renderer,&rect);
         }
         else
@@ -126,8 +131,17 @@ int main(int argc,char* argv[])
         }
         platform();
         SDL_RenderPresent(renderer);
-        SDL_Delay(500);
+        re=re+5;
+        if(re==600)
+        {
+            re=0;
+        }
+        int end=SDL_GetTicks()-start;
+        if(end<8)
+        {
+        SDL_Delay(8-end);
     }
+}
 
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
