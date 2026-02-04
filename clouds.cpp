@@ -92,9 +92,25 @@ int main(int argc, char* argv[])
 
         if (window != NULL)
         {
+<<<<<<< HEAD
             renderer = SDL_CreateRenderer(window, -1, 0);
             running = true;
+=======
+            
+            case SDL_QUIT:
+                running=false;
+            break;
+            git fg
+            clouds();
+            case SDL_KEYDOWN:
+            
+            clouds();break;
+            
+            default:
+            break;
+>>>>>>> 0edabf0f4bba0070fe0ff159a7975186b4cca41e
         }
+        clouds();
     }
 
     while (running)

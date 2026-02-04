@@ -11,11 +11,11 @@ int change=0;
 int l=0;
 int y=0;
 void platform()
-{int y=530,x=0,w=60,h=10;
+{int y=530,x=-60,w=60,h=10;
     
      
     int i;
-    for(i=0;i<35;i++)
+    for(i=0;i<36;i++)
     {
     SDL_Rect ground;
     ground.x=x+change;
@@ -91,7 +91,7 @@ void userinput(int &x,int &y)
                     {
                         case SDLK_a:
                             x=x;
-                            change=change+4;
+                            change=change+2;
                             if(change==60)
                                 {
                                     change=0;
@@ -99,7 +99,7 @@ void userinput(int &x,int &y)
                             break;
                         case SDLK_d:
                             x=x;
-                            change=change-4;
+                            change=change-2;
                             if(change==-60)
                                 {
                                     change=0;
@@ -347,7 +347,7 @@ int main(int argc,char* argv[])
                     r11.render(x+647,y+460,8,10);
                     r12.render(x+635,y+395,10,70);
                     r13.render(x+623,y+465,12,10);
-                    r14.render(x+645,y+428,10,7);
+                        r14.render(x+645,y+428,10,7);
                     r15.render(x+647,y+425,30,8);
                     r16.render(x+663,y+428,25,7);
                     r17.render(x+688,y+393,10,32);
