@@ -23,12 +23,20 @@ int main(int argc,char* argv[])
         SDL_PollEvent(&input);
         switch(input.type)
         {
+            
             case SDL_QUIT:
                 running=false;
             break;
+            git fg
+            clouds();
+            case SDL_KEYDOWN:
+            
+            clouds();break;
+            
             default:
             break;
         }
+        clouds();
     }
 SDL_DestroyWindow(window);
 SDL_DestroyRenderer(renderer);
