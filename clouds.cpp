@@ -30,8 +30,8 @@ SDL_Rect r13 = {880, 300, 15, 10};
 
 SDL_Rect r14 = {890, 290, 20, 10};
 SDL_Rect r15 = {906, 298, 25, 10};
-SDL_Rect r16 = {931, 307, 20, 10};
-SDL_Rect r17 = {951, 313, 10, 21};
+//SDL_Rect r16 = {931, 307, 20, 10};
+SDL_Rect r17 = {932, 313, 10, 21};
 SDL_Rect r18 = {951, 334, 30, 10};
 SDL_Rect r19 = {972, 344, 25, 10};
 
@@ -63,7 +63,7 @@ SDL_Rect r23 = {990, 393, 10, 10};
     SDL_RenderFillRect(renderer, &r13);
     SDL_RenderFillRect(renderer, &r14);
     SDL_RenderFillRect(renderer, &r15);
-    SDL_RenderFillRect(renderer, &r16);
+    //SDL_RenderFillRect(renderer, &r16);
 
     SDL_RenderFillRect(renderer, &r17);
     SDL_RenderFillRect(renderer, &r18);
@@ -92,10 +92,10 @@ int main(int argc, char* argv[])
 
         if (window != NULL)
         {
-<<<<<<< HEAD
+
             renderer = SDL_CreateRenderer(window, -1, 0);
             running = true;
-=======
+
             
             case SDL_QUIT:
                 running=false;
@@ -104,11 +104,12 @@ int main(int argc, char* argv[])
             clouds();
             case SDL_KEYDOWN:
             
-            clouds();break;
+            clouds();
+            break;
             
             default:
             break;
->>>>>>> 0edabf0f4bba0070fe0ff159a7975186b4cca41e
+
         }
         clouds();
     }
