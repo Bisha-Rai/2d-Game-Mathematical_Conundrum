@@ -10,10 +10,39 @@ int i=0;
 int change=0;
 int l=0;
 int y=0;
+
+void number(int n)
+{
+    SDL_Rect pixel1;
+    SDL_Rect pixel2;
+    SDL_Rect pixel3;
+    SDL_Rect pixel4;
+    SDL_Rect pixel5;
+    SDL_Rect pixel6;
+    SDL_Rect pixel7;
+    if(n==0)
+    {
+        pixel1={500,100,30,10};
+        pixel2={530,110,10,50};
+        pixel3={500,160,30,10};
+        pixel4={490,110,10,50};
+        SDL_SetRenderDrawColor(renderer,255,255,255,255);
+        SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        
+        SDL_RenderFillRect(renderer,&pixel4);
+        
+    }
+
+};
+
+
+
+
 void platform()
-{int y=530,x=-60,w=60,h=10;
-    
-     
+{
+    int y=530,x=-60,w=60,h=10;
     int i;
     for(i=0;i<36;i++)
     {
@@ -394,6 +423,7 @@ int main(int argc,char* argv[])
                 }
             platform();
             SDL_SetRenderDrawColor(renderer,255,255,255,255);
+            number(0);
             SDL_RenderPresent(renderer);    
             Uint32 frameduration=SDL_GetTicks()-framestart;
             if(frameduration<16)
