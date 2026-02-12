@@ -13,6 +13,7 @@ int y=0;
 
 void number(int n)
 {
+    SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_Rect pixel1;
     SDL_Rect pixel2;
     SDL_Rect pixel3;
@@ -30,9 +31,135 @@ void number(int n)
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
-        
         SDL_RenderFillRect(renderer,&pixel4);
-        
+    }
+    if(n==1)
+    {
+        pixel1={500,110,10,10};
+        pixel2={490,120,10,10};
+        pixel3={510,100,10,60};
+        pixel4={490,160,50,10};
+        SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        SDL_RenderFillRect(renderer,&pixel4);
+    }
+    if(n==2)
+    {
+        pixel1={490,110,10,10};
+        pixel2={500,100,20,10};
+        pixel3={520,110,10,20};
+        pixel4={500,130,20,10};
+        pixel5={490,140,20,10};
+        pixel6={490,150,10,10};
+        pixel7={490,160,40,10};
+        SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        SDL_RenderFillRect(renderer,&pixel4);
+        SDL_RenderFillRect(renderer,&pixel5);
+        SDL_RenderFillRect(renderer,&pixel6);
+        SDL_RenderFillRect(renderer,&pixel7);
+    }
+    if(n==3)
+    {
+        pixel1={490,110,10,10};
+        pixel2={500,100,20,10};
+        pixel3={520,110,10,20};
+        pixel4={510,130,10,10};
+        pixel5={520,140,10,20};
+        pixel6={500,160,20,10};
+        pixel7={490,150,10,10};
+        SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        SDL_RenderFillRect(renderer,&pixel4);
+        SDL_RenderFillRect(renderer,&pixel5);
+        SDL_RenderFillRect(renderer,&pixel6);
+        SDL_RenderFillRect(renderer,&pixel7);
+    }
+    if(n==4)
+    {
+        pixel1={520,100,10,70};
+        pixel2={490,130,50,10};
+        pixel3={500,120,10,10};
+        pixel4={510,110,10,10};
+        SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        SDL_RenderFillRect(renderer,&pixel4);
+    }
+    if(n==5)
+    {   
+        pixel1={490,100,40,10};
+        pixel2={490,110,10,10};   
+        pixel3={500,120,20,10};
+        pixel4={520,130,10,20};
+        pixel5={500,150,20,10};
+        pixel6={490,140,10,10};
+        SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        SDL_RenderFillRect(renderer,&pixel4);
+        SDL_RenderFillRect(renderer,&pixel5);
+        SDL_RenderFillRect(renderer,&pixel6);
+    }
+    if(n==6)
+    {
+        pixel1={490,110,10,50};
+        pixel2={500,130,20,10};
+        pixel3={520,140,10,20};
+        pixel4={500,160,20,10};
+        pixel5={520,110,10,10};
+        SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        SDL_RenderFillRect(renderer,&pixel4);
+        SDL_RenderFillRect(renderer,&pixel5);
+    }
+    if(n==7)
+    {
+        pixel1={490,100,40,10};
+        pixel2={510,110,10,30};
+        pixel3={500,130,10,30};
+        pixel4={520,110,10,10};
+        SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        SDL_RenderFillRect(renderer,&pixel4);
+    }
+    if(n==8)
+    {
+        pixel1={500,100,20,10};
+        pixel2={520,110,10,20};
+        pixel3={500,130,20,10};
+        pixel4={520,140,10,20};
+        pixel5={500,160,20,10};
+        pixel6={490,140,10,20};
+        pixel7={490,110,10,20};
+        SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        SDL_RenderFillRect(renderer,&pixel4);
+        SDL_RenderFillRect(renderer,&pixel5);
+        SDL_RenderFillRect(renderer,&pixel6);
+        SDL_RenderFillRect(renderer,&pixel7);
+    }
+    if(n==9)
+    {
+        pixel1={500,100,20,10};
+        pixel2={520,110,10,50};
+        pixel3={500,130,20,10};
+        pixel4={500,160,20,10};
+        pixel5={490,110,10,20};
+        pixel6={490,150,10,10};
+              SDL_RenderFillRect(renderer,&pixel1);
+        SDL_RenderFillRect(renderer,&pixel2);
+        SDL_RenderFillRect(renderer,&pixel3);
+        SDL_RenderFillRect(renderer,&pixel4);
+        SDL_RenderFillRect(renderer,&pixel5);
+        SDL_RenderFillRect(renderer,&pixel6);
+
     }
 
 };
@@ -376,7 +503,7 @@ int main(int argc,char* argv[])
                     r11.render(x+647,y+460,8,10);
                     r12.render(x+635,y+395,10,70);
                     r13.render(x+623,y+465,12,10);
-                        r14.render(x+645,y+428,10,7);
+                    r14.render(x+645,y+428,10,7);
                     r15.render(x+647,y+425,30,8);
                     r16.render(x+663,y+428,25,7);
                     r17.render(x+688,y+393,10,32);
