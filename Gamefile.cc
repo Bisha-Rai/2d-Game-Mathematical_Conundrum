@@ -1,7 +1,10 @@
 #include<iostream>
 #include<SDL2/SDL.h>
+#include<time.h>
 #define SDL_MAIN_HANDLED
 bool running;
+bool answered=false;
+bool generated=false;
 SDL_Window* window=NULL;
 SDL_Renderer* renderer= NULL;
 SDL_Event input;
@@ -10,9 +13,64 @@ int i=0;
 int change=0;
 int l=0;
 int y=0;
+int a=0;
 
-void number(int n)
+void symbol(int c)
+{   SDL_SetRenderDrawColor(renderer,255,255,255,255);
+    SDL_Rect symbol1;
+    SDL_Rect symbol2;
+    SDL_Rect symbol3;
+    SDL_Rect symbol4;
+    SDL_Rect symbol5;
+    
+    if(c==0)
+    {   
+        symbol1={550,130,30,10};
+        symbol2={560,120,10,30};
+        SDL_RenderFillRect(renderer,&symbol1);
+        SDL_RenderFillRect(renderer,&symbol2);     
+    }
+    if(c==1)
+    {
+        symbol1={550,130,30,10};
+        SDL_RenderFillRect(renderer,&symbol1);
+    }
+    if(c==2)
+    {
+        symbol1={560,130,10,10};
+        symbol2={550,120,10,10};
+        symbol3={570,120,10,10};
+        symbol4={570,140,10,10};
+        symbol5={550,140,10,10};
+        SDL_RenderFillRect(renderer,&symbol1);
+        SDL_RenderFillRect(renderer,&symbol2);
+        SDL_RenderFillRect(renderer,&symbol3);
+        SDL_RenderFillRect(renderer,&symbol4);
+        SDL_RenderFillRect(renderer,&symbol5);
+    }
+    if(c==3)
+    {
+        symbol1={550,130,30,10};
+        symbol2={560,120,10,5};
+        symbol3={560,145,10,5};
+        SDL_RenderFillRect(renderer,&symbol1);
+        SDL_RenderFillRect(renderer,&symbol2);
+        SDL_RenderFillRect(renderer,&symbol3);
+    }
+
+}
+
+void number(int n,int p)
 {
+    int x;
+    if(p==2)
+    {
+        x=100;
+    }
+    else
+    {
+        x=0;
+    }
     SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_Rect pixel1;
     SDL_Rect pixel2;
@@ -23,10 +81,10 @@ void number(int n)
     SDL_Rect pixel7;
     if(n==0)
     {
-        pixel1={500,100,30,10};
-        pixel2={530,110,10,50};
-        pixel3={500,160,30,10};
-        pixel4={490,110,10,50};
+        pixel1={500+x,100,30,10};
+        pixel2={530+x,110,10,50};
+        pixel3={500+x,160,30,10};
+        pixel4={490+x,110,10,50};
         SDL_SetRenderDrawColor(renderer,255,255,255,255);
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
@@ -35,10 +93,10 @@ void number(int n)
     }
     if(n==1)
     {
-        pixel1={500,110,10,10};
-        pixel2={490,120,10,10};
-        pixel3={510,100,10,60};
-        pixel4={490,160,50,10};
+        pixel1={500+x,110,10,10};
+        pixel2={490+x,120,10,10};
+        pixel3={510+x,100,10,60};
+        pixel4={490+x,160,50,10};
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
@@ -46,13 +104,13 @@ void number(int n)
     }
     if(n==2)
     {
-        pixel1={490,110,10,10};
-        pixel2={500,100,20,10};
-        pixel3={520,110,10,20};
-        pixel4={500,130,20,10};
-        pixel5={490,140,20,10};
-        pixel6={490,150,10,10};
-        pixel7={490,160,40,10};
+        pixel1={490+x,110,10,10};
+        pixel2={500+x,100,20,10};
+        pixel3={520+x,110,10,20};
+        pixel4={500+x,130,20,10};
+        pixel5={490+x,140,20,10};
+        pixel6={490+x,150,10,10};
+        pixel7={490+x,160,40,10};
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
@@ -63,13 +121,13 @@ void number(int n)
     }
     if(n==3)
     {
-        pixel1={490,110,10,10};
-        pixel2={500,100,20,10};
-        pixel3={520,110,10,20};
-        pixel4={510,130,10,10};
-        pixel5={520,140,10,20};
-        pixel6={500,160,20,10};
-        pixel7={490,150,10,10};
+        pixel1={490+x,110,10,10};
+        pixel2={500+x,100,20,10};
+        pixel3={520+x,110,10,20};
+        pixel4={510+x,130,10,10};
+        pixel5={520+x,140,10,20};
+        pixel6={500+x,160,20,10};
+        pixel7={490+x,150,10,10};
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
@@ -80,10 +138,10 @@ void number(int n)
     }
     if(n==4)
     {
-        pixel1={520,100,10,70};
-        pixel2={490,130,50,10};
-        pixel3={500,120,10,10};
-        pixel4={510,110,10,10};
+        pixel1={520+x,100,10,70};
+        pixel2={490+x,130,50,10};
+        pixel3={500+x,120,10,10};
+        pixel4={510+x,110,10,10};
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
@@ -91,12 +149,12 @@ void number(int n)
     }
     if(n==5)
     {   
-        pixel1={490,100,40,10};
-        pixel2={490,110,10,10};   
-        pixel3={500,120,20,10};
-        pixel4={520,130,10,20};
-        pixel5={500,150,20,10};
-        pixel6={490,140,10,10};
+        pixel1={490+x,100,40,10};
+        pixel2={490+x,110,10,10};   
+        pixel3={500+x,120,20,10};
+        pixel4={520+x,130,10,20};
+        pixel5={500+x,150,20,10};
+        pixel6={490+x,140,10,10};
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
@@ -106,23 +164,26 @@ void number(int n)
     }
     if(n==6)
     {
-        pixel1={490,110,10,50};
-        pixel2={500,130,20,10};
-        pixel3={520,140,10,20};
-        pixel4={500,160,20,10};
-        pixel5={520,110,10,10};
+        pixel1={490+x,110,10,50};
+        pixel2={500+x,130,20,10};
+        pixel3={520+x,140,10,20};
+        pixel4={500+x,160,20,10};
+        pixel5={520+x,110,10,10
+        };
+        pixel6={500+x,100,20,10};
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
         SDL_RenderFillRect(renderer,&pixel4);
         SDL_RenderFillRect(renderer,&pixel5);
+        SDL_RenderFillRect(renderer,&pixel6);
     }
     if(n==7)
     {
-        pixel1={490,100,40,10};
-        pixel2={510,110,10,30};
-        pixel3={500,130,10,30};
-        pixel4={520,110,10,10};
+        pixel1={490+x,100,40,10};
+        pixel2={510+x,110,10,30};
+        pixel3={500+x,130,10,30};
+        pixel4={520+x,110,10,10};
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
@@ -130,13 +191,13 @@ void number(int n)
     }
     if(n==8)
     {
-        pixel1={500,100,20,10};
-        pixel2={520,110,10,20};
-        pixel3={500,130,20,10};
-        pixel4={520,140,10,20};
-        pixel5={500,160,20,10};
-        pixel6={490,140,10,20};
-        pixel7={490,110,10,20};
+        pixel1={500+x,100,20,10};
+        pixel2={520+x,110,10,20};
+        pixel3={500+x,130,20,10};
+        pixel4={520+x,140,10,20};
+        pixel5={500+x,160,20,10};
+        pixel6={490+x,140,10,20};
+        pixel7={490+x,110,10,20};
         SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
@@ -147,12 +208,12 @@ void number(int n)
     }
     if(n==9)
     {
-        pixel1={500,100,20,10};
-        pixel2={520,110,10,50};
-        pixel3={500,130,20,10};
-        pixel4={500,160,20,10};
-        pixel5={490,110,10,20};
-        pixel6={490,150,10,10};
+        pixel1={500+x,100,20,10};
+        pixel2={520+x,110,10,50};
+        pixel3={500+x,130,20,10};
+        pixel4={500+x,160,20,10};
+        pixel5={490+x,110,10,20};
+        pixel6={490+x,150,10,10};
               SDL_RenderFillRect(renderer,&pixel1);
         SDL_RenderFillRect(renderer,&pixel2);
         SDL_RenderFillRect(renderer,&pixel3);
@@ -247,7 +308,7 @@ void userinput(int &x,int &y)
                     {
                         case SDLK_a:
                             x=x;
-                            change=change+2;
+                            change=change+1;
                             if(change==60)
                                 {
                                     change=0;
@@ -298,6 +359,8 @@ class character
 
 int main(int argc,char* argv[])
 {
+    int first,second,answer,op;
+    srand(time(NULL));        
     int x=0,w=0,h=0,jump=0;
     character r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r20,r19,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31,r32,r33,r34,r35,r36,r37,r38,r39,r40,r41,r42,r43,r44,r45,r46,r47,r48,r49,r50,r51,r52,r53,r54,r55,r56,r57,r58,r59,r60,r61,r62,r63,r64;
     if(SDL_Init(SDL_INIT_EVERYTHING)==0)
@@ -311,7 +374,7 @@ int main(int argc,char* argv[])
             running=false;
         }
     while(running) 
-        {
+      {
             Uint32 framestart=SDL_GetTicks();
             SDL_SetRenderDrawColor(renderer,0,0,0,255);
             SDL_RenderClear(renderer);
@@ -322,10 +385,7 @@ int main(int argc,char* argv[])
                    if(l!=0)
                         {
                             y=y-6;
-                       
-                    
-                 
-                     r1.render(x+520,y+520,30,10);
+                    r1.render(x+520,y+520,30,10);
                     r2.render(510+x,y+490,10,30);
                     r3.render(x+550,y+490,10,25);
                     r4.render(x+520,y+480,15,10);
@@ -550,13 +610,31 @@ int main(int argc,char* argv[])
                 }
             platform();
             SDL_SetRenderDrawColor(renderer,255,255,255,255);
-            number(0);
+                if(generated)
+                {
+                    number(first,1);
+                    number(second,2);
+                    symbol(op);
+                    if(a==60)
+                    {
+                        a=0;
+                        generated=false;
+                    }
+                }
+                else
+                {
+                    first=rand()%10;
+                    second=rand()%10;
+                    op=rand()%4;
+                    generated=true;
+                }
             SDL_RenderPresent(renderer);    
             Uint32 frameduration=SDL_GetTicks()-framestart;
-            if(frameduration<16)
+            if(frameduration<8)
                 {
-                    SDL_Delay(16-frameduration);
+                    SDL_Delay(8-frameduration);
                 } 
+                a++;
         }
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
