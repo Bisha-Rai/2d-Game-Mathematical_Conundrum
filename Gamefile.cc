@@ -13,6 +13,7 @@ int i=0;
 int change=0;
 int l=0;
 int y=0;
+int anschoice;
 int a=0;
 
 void symbol(int c)
@@ -306,6 +307,29 @@ void userinput(int &x,int &y)
                     }
                 switch(input.key.keysym.sym)
                     {
+                
+                        
+                        case SDLK_q:
+                        if(anschoice==1)
+                        {
+                            break;
+                        }
+                        else if(anschoice==0)
+                        {
+                            answered=true;
+                            break;
+                        }
+                        case SDLK_e:
+                        if(anschoice==1)
+                        {
+                            answered=true;
+                            break;
+                        }
+                        else if(anschoice==0)
+                        {
+                            break;
+                        }
+                    
                         case SDLK_a:
                             x=x;
                             change=change+1;
@@ -359,7 +383,7 @@ class character
 
 int main(int argc,char* argv[])
 {
-    int first,second,answer,op;
+    int first,second,answer,op,gen=1,tim=0;
     srand(time(NULL));        
     int x=0,w=0,h=0,jump=0;
     character r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r20,r19,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31,r32,r33,r34,r35,r36,r37,r38,r39,r40,r41,r42,r43,r44,r45,r46,r47,r48,r49,r50,r51,r52,r53,r54,r55,r56,r57,r58,r59,r60,r61,r62,r63,r64;
@@ -376,6 +400,10 @@ int main(int argc,char* argv[])
     while(running) 
       {
             Uint32 framestart=SDL_GetTicks();
+            if(gen==1)
+            {
+                gen=60*(10+rand()%10);
+            }
             SDL_SetRenderDrawColor(renderer,0,0,0,255);
             SDL_RenderClear(renderer);
             userinput(x,y);
@@ -610,15 +638,22 @@ int main(int argc,char* argv[])
                 }
             platform();
             SDL_SetRenderDrawColor(renderer,255,255,255,255);
+            if(tim<gen)
+            {
+                tim++;
+            }
+            if(tim==gen)
+            {
                 if(generated)
                 {
                     number(first,1);
                     number(second,2);
                     symbol(op);
-                    if(a==60)
+                    if(answered)
                     {
-                        a=0;
+                        answered=false;
                         generated=false;
+                        tim=0;
                     }
                 }
                 else
@@ -626,15 +661,34 @@ int main(int argc,char* argv[])
                     first=rand()%10;
                     second=rand()%10;
                     op=rand()%4;
+                    if(op==0)
+                    {
+                        answer=first-second;
+                    }
+                    else if(op==1)
+                    {
+                        answer=first+second;
+                    }
+                    else if(op==2)
+                    {
+                        answer=first*second;
+                    }
+                    else if(op==3)
+                    {
+                        answer=first/second;
+                    }
                     generated=true;
+                    anschoice=rand()%2;
                 }
+                
+            }
             SDL_RenderPresent(renderer);    
             Uint32 frameduration=SDL_GetTicks()-framestart;
             if(frameduration<8)
                 {
                     SDL_Delay(8-frameduration);
                 } 
-                a++;
+                
         }
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
