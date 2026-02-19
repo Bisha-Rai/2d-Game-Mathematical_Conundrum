@@ -16,14 +16,22 @@ int y=0;
 int anschoice;
 int a=0;
 
-void symbol(int c)
+void symbol(int c,int p)
 {   SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_Rect symbol1;
     SDL_Rect symbol2;
     SDL_Rect symbol3;
     SDL_Rect symbol4;
     SDL_Rect symbol5;
-    
+    int x;
+    if(p==1)
+    {
+    x=0;
+    }
+    else if(p==2)
+    {
+        x=220;
+    }
     if(c==0)
     {   
         symbol1={550,130,30,10};
@@ -33,7 +41,7 @@ void symbol(int c)
     }
     if(c==1)
     {
-        symbol1={550,130,30,10};
+        symbol1={550+x,130,30,10};
         SDL_RenderFillRect(renderer,&symbol1);
     }
     if(c==2)
@@ -68,9 +76,21 @@ void number(int n,int p)
     {
         x=100;
     }
-    else
+    else if(p==1)
     {
         x=0;
+    }
+    else if(p==3)
+    {
+        x=320;
+    }
+    else if(p==4)
+    {
+        x=320;
+    }
+    else if(p==5)
+    {
+        x=380;
     }
     SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_Rect pixel1;
@@ -92,7 +112,7 @@ void number(int n,int p)
         SDL_RenderFillRect(renderer,&pixel3);
         SDL_RenderFillRect(renderer,&pixel4);
     }
-    if(n==1)
+    if(n==1||n==-1)
     {
         pixel1={500+x,110,10,10};
         pixel2={490+x,120,10,10};
@@ -103,7 +123,7 @@ void number(int n,int p)
         SDL_RenderFillRect(renderer,&pixel3);
         SDL_RenderFillRect(renderer,&pixel4);
     }
-    if(n==2)
+    if(n==2||n==-2)
     {
         pixel1={490+x,110,10,10};
         pixel2={500+x,100,20,10};
@@ -120,7 +140,7 @@ void number(int n,int p)
         SDL_RenderFillRect(renderer,&pixel6);
         SDL_RenderFillRect(renderer,&pixel7);
     }
-    if(n==3)
+    if(n==3||n==-3)
     {
         pixel1={490+x,110,10,10};
         pixel2={500+x,100,20,10};
@@ -137,7 +157,7 @@ void number(int n,int p)
         SDL_RenderFillRect(renderer,&pixel6);
         SDL_RenderFillRect(renderer,&pixel7);
     }
-    if(n==4)
+    if(n==4||n==-4)
     {
         pixel1={520+x,100,10,70};
         pixel2={490+x,130,50,10};
@@ -148,7 +168,7 @@ void number(int n,int p)
         SDL_RenderFillRect(renderer,&pixel3);
         SDL_RenderFillRect(renderer,&pixel4);
     }
-    if(n==5)
+    if(n==5||n==-5)
     {   
         pixel1={490+x,100,40,10};
         pixel2={490+x,110,10,10};   
@@ -163,7 +183,7 @@ void number(int n,int p)
         SDL_RenderFillRect(renderer,&pixel5);
         SDL_RenderFillRect(renderer,&pixel6);
     }
-    if(n==6)
+    if(n==6||n==-6)
     {
         pixel1={490+x,110,10,50};
         pixel2={500+x,130,20,10};
@@ -179,7 +199,7 @@ void number(int n,int p)
         SDL_RenderFillRect(renderer,&pixel5);
         SDL_RenderFillRect(renderer,&pixel6);
     }
-    if(n==7)
+    if(n==7||n==-7)
     {
         pixel1={490+x,100,40,10};
         pixel2={510+x,110,10,30};
@@ -190,7 +210,7 @@ void number(int n,int p)
         SDL_RenderFillRect(renderer,&pixel3);
         SDL_RenderFillRect(renderer,&pixel4);
     }
-    if(n==8)
+    if(n==8||n==-8)
     {
         pixel1={500+x,100,20,10};
         pixel2={520+x,110,10,20};
@@ -207,7 +227,7 @@ void number(int n,int p)
         SDL_RenderFillRect(renderer,&pixel6);
         SDL_RenderFillRect(renderer,&pixel7);
     }
-    if(n==9)
+    if(n==9||n==-9)
     {
         pixel1={500+x,100,20,10};
         pixel2={520+x,110,10,50};
@@ -402,7 +422,7 @@ int main(int argc,char* argv[])
             Uint32 framestart=SDL_GetTicks();
             if(gen==1)
             {
-                gen=60*(10+rand()%10);
+                gen=30*(10+rand()%10);
             }
             SDL_SetRenderDrawColor(renderer,0,0,0,255);
             SDL_RenderClear(renderer);
@@ -648,7 +668,16 @@ int main(int argc,char* argv[])
                 {
                     number(first,1);
                     number(second,2);
-                    symbol(op);
+                    symbol(op,1);
+                       if(answer<0)
+                    {
+                        symbol(1,2);
+                    }
+                    if(answer<10)
+                    {
+                        number(answer,3);
+                    }
+                 
                     if(answered)
                     {
                         answered=false;
@@ -663,11 +692,11 @@ int main(int argc,char* argv[])
                     op=rand()%4;
                     if(op==0)
                     {
-                        answer=first-second;
+                        answer=first+second;
                     }
                     else if(op==1)
                     {
-                        answer=first+second;
+                        answer=first-second;
                     }
                     else if(op==2)
                     {
@@ -684,11 +713,10 @@ int main(int argc,char* argv[])
             }
             SDL_RenderPresent(renderer);    
             Uint32 frameduration=SDL_GetTicks()-framestart;
-            if(frameduration<8)
+            if(frameduration<4)
                 {
-                    SDL_Delay(8-frameduration);
-                } 
-                
+                    SDL_Delay(4-frameduration);
+                }     
         }
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
