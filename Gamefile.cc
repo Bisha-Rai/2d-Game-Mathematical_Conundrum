@@ -14,8 +14,8 @@ int change=0;
 int l=0;
 int y=0;
 int anschoice;
-int a=0;
-
+int a,b;
+int score=0;
 void symbol(int c,int p)
 {   SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_Rect symbol1;
@@ -30,7 +30,7 @@ void symbol(int c,int p)
     }
     else if(p==2)
     {
-        x=220;
+        x=220+a;
     }
     if(c==0)
     {   
@@ -72,6 +72,8 @@ void symbol(int c,int p)
 void number(int n,int p)
 {
     int x;
+   
+
     if(p==2)
     {
         x=100;
@@ -82,15 +84,27 @@ void number(int n,int p)
     }
     else if(p==3)
     {
-        x=320;
+        x=320+a;
     }
     else if(p==4)
     {
-        x=320;
+        x=320+a;
     }
     else if(p==5)
     {
-        x=380;
+        x=380+a;
+    }
+    else if(p==6)
+    {
+        x=320+b;
+    }
+    else if(p==7)
+    {
+        x=320+b;
+    }
+    else if(p==8)
+    {
+        x=380+b;
     }
     SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_Rect pixel1;
@@ -290,7 +304,7 @@ x=x+60;//to add the ground block every 60 pixels from the previous start point d
     }
 }
 void userinput(int &x,int &y)
-    {
+    { 
         SDL_PollEvent(&input);
         switch(input.type)
             {
@@ -332,21 +346,37 @@ void userinput(int &x,int &y)
                         case SDLK_q:
                         if(anschoice==1)
                         {
+                            score--;
                             break;
                         }
                         else if(anschoice==0)
                         {
                             answered=true;
+                            score++;
+                            break;
+                        }
+                        else if(anschoice==2)
+                        {
+                            answered=true;
+                            score++;
                             break;
                         }
                         case SDLK_e:
                         if(anschoice==1)
                         {
                             answered=true;
+                            score++;
                             break;
                         }
                         else if(anschoice==0)
                         {
+                            score--;
+                            break;
+                        }
+                         else if(anschoice==2)
+                        {
+                            answered=true;
+                            score++;
                             break;
                         }
                     
@@ -403,7 +433,8 @@ class character
 
 int main(int argc,char* argv[])
 {
-    int first,second,answer,op,gen=1,tim=0;
+    
+    int first,second,answer,op,gen=1,tim=0,randomnumber;
     srand(time(NULL));        
     int x=0,w=0,h=0,jump=0;
     character r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r20,r19,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31,r32,r33,r34,r35,r36,r37,r38,r39,r40,r41,r42,r43,r44,r45,r46,r47,r48,r49,r50,r51,r52,r53,r54,r55,r56,r57,r58,r59,r60,r61,r62,r63,r64;
@@ -669,15 +700,34 @@ int main(int argc,char* argv[])
                     number(first,1);
                     number(second,2);
                     symbol(op,1);
-                       if(answer<0)
+                    
+                    if(anschoice==0)
+                       {
+                          a=0;
+                          b=200;
+                       }   
+                    else if(anschoice==1)
+                       {
+                           a=200;
+                           b=0;
+                       }
+                       
+                    if(answer<0)
                     {
                         symbol(1,2);
                     }
                     if(answer<10)
                     {
                         number(answer,3);
+                        number(randomnumber,6);
                     }
-                 
+                    else if(answer>9)
+                    {
+                        number(answer/10,4);
+                        number(answer%10,5);
+                        number(randomnumber/10,7);
+                        number(randomnumber%10,8);
+                    }
                     if(answered)
                     {
                         answered=false;
@@ -706,8 +756,24 @@ int main(int argc,char* argv[])
                     {
                         answer=first/second;
                     }
+                        if(answer<0)
+                            {
+                                randomnumber=-rand()%10;
+                            }
+                        else if(answer>0&&answer<10)
+                            {
+                                randomnumber=rand()%10;
+                            }
+                        else if(answer>9)
+                        {
+                            randomnumber=rand()%100;
+                        }
                     generated=true;
                     anschoice=rand()%2;
+                    if(randomnumber==answer)
+                    {
+                        anschoice=2;
+                    }
                 }
                 
             }
