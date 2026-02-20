@@ -22,6 +22,80 @@ int tim=0;
 int gen=1;
 Uint32 initialtime;
 Uint32 finaltime;
+void heart()
+{
+    int i;
+
+    SDL_SetRenderDrawColor(renderer,255,255,255,255);
+      SDL_Rect heart1;
+      if(lives>=1)
+      {
+   
+    for(i=0;i<3;i++)
+    {
+        int x=25,y=20;
+         heart1={x,y,5,25};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x+5,y-5,5,25};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x+10,y-10,5,25};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x+15,y-5,5,17};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x-5,y-5,5,25};
+          SDL_RenderFillRect(renderer,&heart1);
+         heart1={x-10,y-10,5,25};
+          SDL_RenderFillRect(renderer,&heart1);
+         heart1={x-15,y-5,5,17};
+          SDL_RenderFillRect(renderer,&heart1);
+    }
+}
+         if(lives>=2)
+               {
+        
+    for(i=0;i<3;i++)
+    {
+        int x=65,y=20;
+         heart1={x,y,5,25};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x+5,y-5,5,25};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x+10,y-10,5,25};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x+15,y-5,5,17};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x-5,y-5,5,25};
+          SDL_RenderFillRect(renderer,&heart1);
+         heart1={x-10,y-10,5,25};
+          SDL_RenderFillRect(renderer,&heart1);
+         heart1={x-15,y-5,5,17};
+          SDL_RenderFillRect(renderer,&heart1);
+          } 
+        }  
+      if(lives>=3)
+      {
+   
+    for(i=0;i<3;i++)
+    {
+        int x=105,y=20;
+         heart1={x,y,5,25};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x+5,y-5,5,25};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x+10,y-10,5,25};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x+15,y-5,5,17};
+         SDL_RenderFillRect(renderer,&heart1);
+         heart1={x-5,y-5,5,25};
+          SDL_RenderFillRect(renderer,&heart1);
+         heart1={x-10,y-10,5,25};
+          SDL_RenderFillRect(renderer,&heart1);
+         heart1={x-15,y-5,5,17};
+          SDL_RenderFillRect(renderer,&heart1);
+    }
+}
+}
+               
 void symbol(int c,int p)
 {   SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_Rect symbol1;
@@ -717,6 +791,7 @@ int main(int argc,char* argv[])
                     r57.render(x+623,y+340,20,12);
                 }
             platform();
+            heart();
             SDL_SetRenderDrawColor(renderer,255,255,255,255);
             if(tim<gen)
             {
