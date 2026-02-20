@@ -426,7 +426,7 @@ void userinput(int &x,int &y)
                             {
                                  answered=true;
                                 lives--;
-                            score--;
+                           
                             }
                             break;
                         }
@@ -464,7 +464,7 @@ void userinput(int &x,int &y)
                             {
                                 answered=true;
                                 lives--;
-                            score--;
+                            
                             }
                             break;
                         }
