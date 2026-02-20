@@ -18,6 +18,8 @@ int a,b;
 float score=0;
 int lives=3;
 int timer;
+int tim=0;
+int gen=1;
 Uint32 initialtime;
 Uint32 finaltime;
 void symbol(int c,int p)
@@ -263,10 +265,6 @@ void number(int n,int p)
     }
 
 };
-
-
-
-
 void platform()
 {
     int y=530,x=-60,w=60,h=10;
@@ -421,6 +419,10 @@ void userinput(int &x,int &y)
                                 {
                                     change=0;
                                 }
+                                if(tim<gen)
+                                {
+                            tim++;
+                                }
                             break;
                         case SDLK_SPACE:
                                 
@@ -460,7 +462,7 @@ class character
 int main(int argc,char* argv[])
 {
     
-    int first,second,answer,op,gen=1,tim=0,randomnumber;
+    int first,second,answer,op,randomnumber;
     srand(time(NULL));        
     int x=0,w=0,h=0,jump=0;
     character r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r20,r19,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31,r32,r33,r34,r35,r36,r37,r38,r39,r40,r41,r42,r43,r44,r45,r46,r47,r48,r49,r50,r51,r52,r53,r54,r55,r56,r57,r58,r59,r60,r61,r62,r63,r64;
@@ -765,6 +767,7 @@ int main(int argc,char* argv[])
                         answered=false;
                         generated=false;
                         tim=0;
+                        gen=1;
                     }
                 }
                 else
