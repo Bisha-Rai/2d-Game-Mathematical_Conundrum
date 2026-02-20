@@ -15,7 +15,11 @@ int l=0;
 int y=0;
 int anschoice;
 int a,b;
-int score=0;
+float score=0;
+int lives=3;
+int timer;
+Uint32 initialtime;
+Uint32 finaltime;
 void symbol(int c,int p)
 {   SDL_SetRenderDrawColor(renderer,255,255,255,255);
     SDL_Rect symbol1;
@@ -346,37 +350,59 @@ void userinput(int &x,int &y)
                         case SDLK_q:
                         if(anschoice==1)
                         {
+                            if(generated)
+                            {
+                                 answered=true;
+                                lives--;
                             score--;
+                            }
                             break;
                         }
                         else if(anschoice==0)
                         {
+                            if(generated)
+                            {
                             answered=true;
                             score++;
+                            }
                             break;
                         }
                         else if(anschoice==2)
                         {
+                            if(generated)
+                            {
                             answered=true;
                             score++;
+                            }
                             break;
                         }
                         case SDLK_e:
                         if(anschoice==1)
                         {
+                            if(generated)
+                            {
                             answered=true;
                             score++;
+                            }
                             break;
                         }
                         else if(anschoice==0)
                         {
+                            if(generated)
+                            {
+                                answered=true;
+                                lives--;
                             score--;
+                            }
                             break;
                         }
                          else if(anschoice==2)
-                        {
+                        {   
+                            if(generated)
+                            {
                             answered=true;
                             score++;
+                            }
                             break;
                         }
                     
@@ -443,6 +469,7 @@ int main(int argc,char* argv[])
             window=SDL_CreateWindow("Mathematical Conundrum",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,1500,700,SDL_WINDOW_SHOWN);
             renderer=SDL_CreateRenderer(window,-1,0);
             running=true;
+            initialtime=SDL_GetTicks();
         }
     else
         {
@@ -711,6 +738,11 @@ int main(int argc,char* argv[])
                            a=200;
                            b=0;
                        }
+                       if(anschoice==2)
+                       {
+                        a=200;
+                        b=0;
+                       }
                        
                     if(answer<0)
                     {
@@ -756,11 +788,7 @@ int main(int argc,char* argv[])
                     {
                         answer=first/second;
                     }
-                        if(answer<0)
-                            {
-                                randomnumber=-rand()%10;
-                            }
-                        else if(answer>0&&answer<10)
+                        if(answer<10)
                             {
                                 randomnumber=rand()%10;
                             }
@@ -779,13 +807,29 @@ int main(int argc,char* argv[])
             }
             SDL_RenderPresent(renderer);    
             Uint32 frameduration=SDL_GetTicks()-framestart;
+            if(lives==0)
+            {
+                running=false;
+            }
             if(frameduration<4)
                 {
                     SDL_Delay(4-frameduration);
                 }     
         }
+        finaltime=SDL_GetTicks();
+        timer=finaltime-initialtime;
+        int seconds =timer/1000;
+        int minute =seconds/60;
+        seconds=seconds-60*minute;
+        float ratio=score/(timer/1000);
+
+
+
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
+    cout<<"Score = "<<score<<endl;
+    cout<<"Time = "<<minute<<":"<<seconds<<endl;
+    cout<<"score to time ratio :"<<ratio<<" Answer per second"<<endl;
     return 0;
 }
